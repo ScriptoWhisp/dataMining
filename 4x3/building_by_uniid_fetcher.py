@@ -2,7 +2,9 @@ from bs4 import BeautifulSoup
 import requests
 
 
-def fetch_building_id(uniid, refresh=False) -> list:
+def fetch_building_id(uniid,
+        refresh=False,
+        url="https://decision.cs.taltech.ee/DEX3/already_taken.php?group_name=2025K") -> list:
     try:
         with open("jsondata/building_by_uniid.txt") as file:
             rows = file.read().split("\n")
@@ -15,7 +17,6 @@ def fetch_building_id(uniid, refresh=False) -> list:
 
     if refresh:
         print("Refreshing data")
-        url = "https://decision.cs.taltech.ee/DEX3/already_taken.php?group_name=2025K"
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
 

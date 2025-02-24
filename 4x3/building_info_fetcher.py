@@ -2,6 +2,8 @@ import requests
 import json
 
 
+# ---- this section of code was taken from the https://github.com/innarliiv/bigdata4digitalconstruction ----
+
 def fetch_building_data(building_id):
     # If building_id json file exists, return it
     try:
@@ -14,14 +16,10 @@ def fetch_building_data(building_id):
     url = 'https://devkluster.ehr.ee/api/building/v2/buildingsData'
 
     # Headers to specify that we accept JSON and will send JSON
-    headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/json'
-    }
+    headers = {'accept': 'application/json', 'Content-Type': 'application/json'}
 
     # Data payload with the building ID
-    payload = {
-        'ehrCodes': [building_id]  # This assumes the API expects a list, even for a single ID
+    payload = {'ehrCodes': [building_id]  # This assumes the API expects a list, even for a single ID
     }
 
     # Making the POST request
@@ -35,6 +33,16 @@ def fetch_building_data(building_id):
         # Handle errors or unsuccessful responses
         print(f"Error fetching data: {response.status_code}")
         return None
+
+
+def save_data_to_file(building_id, data, path="4x3/jsondata"):
+    filename = f"{path}/{building_id}.ehr.json"
+    with open(filename, 'w') as file:
+        json.dump(data, file, indent=4)
+    print(f"Data saved to {filename}")
+
+
+# ---- end of the section of code taken from the https://github.com/innarliiv/bigdata4digitalconstruction ----
 
 
 def find_values(obj, key):
@@ -70,10 +78,3 @@ def json_handler(json_data, headers):
         item_data = {header: find_values(item, header) for header in headers}
         data.append(item_data)
     return data
-
-
-def save_data_to_file(building_id, data, path="4x3/jsondata"):
-    filename = f"{path}/{building_id}.ehr.json"
-    with open(filename, 'w') as file:
-        json.dump(data, file, indent=4)
-    print(f"Data saved to {filename}")
