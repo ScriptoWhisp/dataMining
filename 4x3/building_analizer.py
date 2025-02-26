@@ -1,6 +1,7 @@
-from building_info_fetcher import fetch_building_data
 import numpy as np
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 
 def analyze_building_data(data, save_to):
@@ -27,6 +28,11 @@ def analyze_building_data(data, save_to):
 
     df.rename(columns={'Buildings': 'x'}, inplace=True)
     df_distance_matrix = pd.DataFrame(distance_matrix, index=df["x"], columns=df["x"])
+    plt.figure(figsize=(10, 10))
+    sns.heatmap(df_distance_matrix, annot=True, cmap='coolwarm')
+    plt.title("Distance matrix")
+    plt.savefig(f"{save_to}/distance_matrix.png")
+    plt.show()
 
     print(df_distance_matrix.head(12))
     df_distance_matrix.to_csv(f"{save_to}/distance_matrix.csv")

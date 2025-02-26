@@ -7,7 +7,7 @@ import json
 def fetch_building_data(building_id):
     # If building_id json file exists, return it
     try:
-        with open(f"4x3/jsondata/{building_id}.ehr.json") as file:
+        with open(f"jsondata/{building_id}.ehr.json") as file:
             return json.load(file)
     except FileNotFoundError:
         print(f"Fetching new data for building {building_id}")

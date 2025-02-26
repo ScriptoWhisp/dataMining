@@ -1,7 +1,6 @@
 from building_by_uniid_fetcher import fetch_building_id
-from building_info_fetcher import fetch_building_data, save_data_to_file, json_handler
+from building_info_fetcher import fetch_building_data, json_handler
 from building_analizer import analyze_building_data
-import numpy as np
 
 
 def analyze(uniid, headers, save_to):
@@ -16,7 +15,7 @@ def analyze(uniid, headers, save_to):
 
 
 if __name__ == "__main__":
-    uniid = "taltech uniid here"
+    uniid = "datjul"
     headers = ["ehrKood",
                "mahtBruto",
                "yldkasut_pind",
