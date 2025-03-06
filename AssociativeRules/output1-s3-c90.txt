@@ -1,0 +1,5 @@
+lihaproduktid <- soolased_määrded (3.94089, 100)
+lihaproduktid <- maitseained saiad (5.41872, 90.9091)
+piim <- jogurtitooted saiad lihaproduktid (3.94089, 100)
+piim <- jogurtitooted saiad (4.92611, 90)
+saiad <- õlled pant_0.5 leivad (3.44828, 100)
